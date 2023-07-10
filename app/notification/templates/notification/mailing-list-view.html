@@ -1,0 +1,20 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Рассылки</h2>
+    <div>
+        <p><a href="{% url 'MailingCreate' %}">создать рассылку</a></p>
+        <p><a href="{% url 'HomePage' %}">главная страница</a></p>
+    </div>
+    <div>
+        {% for obj in MailingLists %}
+            <div>
+                <hr style="width: 100px; margin-left: 0">
+                <p><a href="{% url 'MailingDetail' pk=obj.pk %}">Рассылка №{{ obj.pk }}</a></p>
+                <p>Дата начала рассылки {{ obj.dateStart }}</p>
+                <p>Дата конца рассылки {{ obj.dateFinish }}</p>
+                <hr style="width: 100px; margin-left: 0">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

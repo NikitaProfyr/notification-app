@@ -1,0 +1,18 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Рассылка №{{ MailingList.pk }}</h2>
+    <div>
+        <p><a href="{% url 'MailingDetail' pk=MailingList.pk %}">назад</a></p>
+    </div>
+    <div>
+        <h2>вы точно хотите удалить данную рассылку?</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>
+                удалить
+            </button>
+        </form>
+    </div>
+{% endblock %}

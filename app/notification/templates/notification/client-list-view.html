@@ -1,0 +1,19 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Клиенты</h2>
+    <div>
+        <p><a href="{% url 'ClientCreate' %}">добавить клиента</a></p>
+        <p><a href="{% url 'HomePage' %}">главная страница</a></p>
+    </div>
+    <div>
+        {% for obj in Clients %}
+            <div>
+                <hr style="width: 100px; margin-left: 0">
+                <p><a href="{% url 'ClientDetail' pk=obj.pk %}">клиент №{{ obj.pk }}</a></p>
+                <p>номер телефона клиента {{ obj.numberPhone }}</p>
+                <hr style="width: 100px; margin-left: 0">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

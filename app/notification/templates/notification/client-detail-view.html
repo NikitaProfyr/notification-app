@@ -1,0 +1,15 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Клиент №{{ Client.pk }}</h2>
+    <div>
+        <p><a href="{% url 'ClientDelete' pk=Client.pk %}">удалить клиента</a></p>
+        <p><a href="{% url 'Clients' %}">назад</a></p>
+    </div>
+    <div>
+        <p>номер телефона клиента {{ Client.numberPhone }}</p>
+        <p>код мобильного оператора {{ Client.codeOperator }}</p>
+        <p>тег (произвольная метка) {{ Client.tag }}</p>
+        <p>часовой пояс {{ Client.timeZone }}</p>
+    </div>
+{% endblock %}

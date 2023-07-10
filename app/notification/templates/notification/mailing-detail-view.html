@@ -1,0 +1,32 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Рассылка №{{ MailingList.pk }}</h2>
+    <div>
+        <p><a href="{% url 'MailingDelete' pk=MailingList.pk %}">удалить рассылку</a></p>
+        <p><a href="{% url 'Mailing' %}">назад</a></p>
+    </div>
+    <div>
+        <p>дата начала рассылки {{ MailingList.dateStart }}</p>
+        <p>дата конца рассылки {{ MailingList.dateFinish }}</p>
+        <p>текст сообщения: {{ MailingList.textMassage }}</p>
+
+        {% if MailingList.filterClientCodeOperator %}
+            <p>фильтр по коду оператора: {{ MailingList.filterClientCodeOperator }}</p>
+        {% endif %}
+
+        {% if MailingList.filterClientTag %}
+            <p>фильтр по тэгу: {{ MailingList.filterClientTag }}</p>
+        {% endif %}
+
+        {% if not MailingList.filterClientCodeOperator and not MailingList.filterClientTag%}
+            <p>фильтры не заданы</p>
+        {% endif %}
+        <div>
+            <h2>Клиенты, получившие сообщения</h2>
+            {% for massage in massages %}
+                <p>номер клиента: {{ massage.Client }}, тэг: {{ massage.Client.tag }}, код мобильного оператора: {{ massage.Client.codeOperator }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'notification/base.html' %}
+
+{% block body %}
+    <h2>Создать рассылку</h2>
+    <div>
+        <p><a href="{% url 'Mailing' %}">назад</a></p>
+    </div>
+    <div>
+        <h2 style="color: red">{{ errorMassage }}</h2>
+    </div>
+    <div>
+        <form action="" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">
+                Начать рассылку
+            </button>
+        </form>
+    </div>
+{% endblock %}

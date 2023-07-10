@@ -1,0 +1,7 @@
+asgiref==3.5.2
+Django==4.0.6
+sqlparse==0.4.2
+djangorestframework==3.14.0
+drf-spectacular==0.26.3
+requests==2.31.0
+pytz==2022.6
