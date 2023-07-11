@@ -10,7 +10,7 @@ from notification.servieces import filterClients, sendMassage
 
 
 class ClientAPIView(ListCreateAPIView):
-    """Список клиентов"""
+    """Создать и просмотреть клиентов"""
     queryset = ClientModel.objects.all()
     serializer_class = ClientsSerializer
 
