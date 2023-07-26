@@ -5,4 +5,4 @@
 
 # Django stuff:
 *.log
-/app/*.sqlite3
+/app/db.sqlite3
