@@ -3,6 +3,6 @@
 # Jetbrains Intellij IDEA
 .idea/
 
-# Django stuff:
+ 
 *.log
 *.sqlite3
