@@ -13,7 +13,6 @@ class OpenAPIConnection:
         self.url = url
         self.jsonData = jsonData
         self.headers = {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjAyODAxMjcsImlzcyI6ImZhYnJpcXVlIiwibmFtZSI6IlNjaG5laWRlciBOaWtpdNCwIn0.z-bsUXruyg6ByLgQgf_sUp7q6AlPDsiNI-2dE8Qtfvg'
         }
         log.info("     Отправлен запрос на внешний API")
         log.info(f"         Отправляемые данные{self.jsonData}")
@@ -37,13 +36,14 @@ def sendMassage(allClients, lastMailingList):
         MassageModel.objects.create(status='доставлено', MailingList=lastMailingList, Client=client)
         log.info(f"         Сообщение доставлену клиенту №{client.numberPhone}")
         lastMassage = MassageModel.objects.all().last()
-        url = f"https://probe.fbrq.cloud/v1/send/{lastMassage.pk}"
+        # url = f"https://test/send/{lastMassage.pk}" url для отправки данных на внешний API
+
         dataResponseAPIConnection = {
             'id': lastMassage.pk,
             "phone": client.numberPhone,
             "text": lastMailingList.textMassage,
         }
-        objConnection = OpenAPIConnection(url, dataResponseAPIConnection)
+        # objConnection = OpenAPIConnection(url, dataResponseAPIConnection) отправка сообщения на внешний API
 
 
 

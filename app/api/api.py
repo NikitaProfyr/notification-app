@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
+
 
 from api.serializers import ClientsSerializer, MailingListSerializer
-from notification.models import ClientModel, MailingListModel, MassageModel
+from notification.models import ClientModel, MailingListModel
 from notification.servieces import filterClients, sendMassage
 
 
@@ -43,8 +43,3 @@ class MailingListCreateAPIView(ListCreateAPIView):
                 lastMailingList = MailingListModel.objects.all().last()
                 sendMassage(clients, lastMailingList)
                 return Response(200)
-
-
-
-
-

@@ -10,10 +10,10 @@ from notification.forms import MailListForm, ClientForm
 from notification.models import MailingListModel, ClientModel, MassageModel
 from notification.servieces import sendMassage, filterClients
 
-
 # Create your views here.
 
 log = logging.getLogger(__name__)
+
 
 class HomePage(TemplateView):
     """Главная страница"""
@@ -34,7 +34,6 @@ class MailingListDetailView(DetailView):
     template_name = 'notification/mailing-detail-view.html'
     model = MailingListModel
     context_object_name = 'MailingList'
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,7 +62,8 @@ class MailingListCreateView(CreateView):
         clients = filterClients(responseData['filterClientCodeOperator'], responseData['filterClientTag'])
         if responseData['dateFinish'] <= utc.localize(datetime.now()):
             self.errorMassage = 'дата окончания рассылки должна быть больше текущего времени'
-            log.info(f'-----Дата окончания рассылки должна быть больше текущего времени: текущие дата и время: {utc.localize(datetime.now())}, дата окончания: {responseData["dateFinish"]}')
+            log.info(
+                f'-----Дата окончания рассылки должна быть больше текущего времени: текущие дата и время: {utc.localize(datetime.now())}, дата окончания: {responseData["dateFinish"]}')
             return render(self.request, self.template_name, {'errorMassage': self.errorMassage, 'form': form})
         else:
             if not clients:
